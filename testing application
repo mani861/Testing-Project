@@ -1,0 +1,208 @@
+*****************************************  Checkpoint => 1 ***********************************************
+
+
+Ques => 1
+-----------*------------*--------------------
+Positive test cases:
+
+S.Nos: TC_01
+    Description: Verify that user has launched browser successfully
+        Pre condition: Users has chrome as the browser
+            Test steps: 1. Launch Chrome browser
+                 Actual result: Browser launched successfully
+                       Expected result: Chrome browser should launch successfully
+                             Status: PASS
+
+S.Nos: TC_02
+    Description: Verify that user has launched "www.flipkart.com"
+        Pre condition: Users has chrome as it browser and has working internet connection
+             Test steps: 1. Launch chrome  2. Open www.flipkart.com in the browser
+                 Actual result: User has successfully landed on flipkart landing page
+                     Expected result: User should successfully land on flipkart landing page
+                        Status: PASS
+
+S.Nos: TC_03
+    Description: SignIn into launched "www.flipkart.com"
+        Pre condition: Users has chrome as it browser and has working internet connection and already on flipkart portal with a legitimate login credential (For signIn it's mandatory) 
+            Test steps: 1. Launch chrome  2. Launch www.flipkart.com in the browser 3. Click on LogIn
+                Actual result: LogIn portion changed to user name -> My Profile 
+                                                                     SuperCoin Zone etc.
+                     Expected result: User Name should be present at the navbar area (Right Corner).
+                            Status: PASS
+    -----------*------------*--------------------
+Negative test cases:
+
+S.Nos: TC_01
+    Description: Verify that user doesn't gets logged in with incorrect credentials
+        Pre condition: Users has chrome as it browser and has working internet connection and already on 
+                        flipkart portal.
+            Test steps: 1. Launch Chrome browser 2. Navigate to flipkart.com 3.Go to Log in portion at 
+                            navbar area.
+                Actual result: "UserName or Password did not match" - "Not a valid credential"
+                       Expected result: User should be denied login along with an informative message 
+                                        saying "please enter correct credentials"
+                             Status: PASS
+
+
+-----------*------------*--------------------
+Edge test cases:
+
+S.Nos: TC_01
+    Description: Verify that application behaviour in case we enter "null" or float number as input to 
+                 apply coupon. 
+        Pre condition: Users has chrome as it browser and has successfully completed sign in process
+                       beforehand and already at check out page for choosed product 
+            Test steps: 1. Launch Chrome browser 2. Navigate to flipkart.com  3. LogIn into flipkart
+                        4. Choose a Product 5. Prsent at payment page 
+                Actual result: "Not a valid coupon code"
+                    Expected result: User should get a message stating that "No longer exist coupon 
+                                    code" 
+                        Status: PASS
+
+
+
+
+
+
+**********************************************************************************************************
+
+
+Ques => 2
+-----------*------------*--------------------
+
+
+CURL:
+curl -X POST "https://sandbox-api.flipkart.net/sellers/v3/shipments/filter"
+-H "accept: application/json"
+-H "Authorization: aaa"
+-H "Content-Type: application/json"
+-d "{ \"filter\": { \"sku\": [ \"string\" ], \"serviceProfiles\": [ \"FBF\" ], \"shipmentTypes\": [ \"EXPRESS\" ],
+\"cancellationType\": \"sellerCancellation\",
+\"dispatchServiceTiers\": [ \"EXPRESS\" ],
+ \"dispatchByDate\": { \"to\": \"2020-07-28T20:27:29.078Z\", \"from\": \"2020-07-28T20:27:29.078Z\" },
+  \"cancellationDate\": { \"to\": \"2020-07-28T20:27:29.078Z\", \"from\": \"2020-07-28T20:27:29.078Z\" },
+   \"states\": [ \"APPROVED\" ], \"locationId\": \"string\",
+    \"dispatchAfterDate\": { \"to\": \"2020-07-28T20:27:29.078Z\", \"from\": \"2020-07-28T20:27:29.078Z\" },
+     \"type\": \"preDispatch\", \"orderDate\": { \"to\": \"2020-07-28T20:27:29.078Z\", \"from\": \"2020-07-28T20:27:29.078Z\" },
+      \"modifiedDate\": { \"to\": \"2020-07-28T20:27:29.078Z\", \"from\": \"2020-07-28T20:27:29.078Z\" } },
+       \"sort\": { \"field\": \"dispatchByDate\", \"order\": \"asc\" }, \"pagination\": { \"batch_size\": 0,
+        \"batch_no\": 0 }, \"sellerId\": \"string\"}"
+
+
+
+Model:
+SearchShipmentRequest{
+filter    Filter{...}
+sort    Sort{...}
+pagination    Pagination{...}
+sellerId    string
+}
+
+
+Success response:
+{
+  "shipments": [
+    {
+      "forms": [
+        {
+          "link": "string",
+          "name": "string",
+          "automated": true
+        }
+      ],
+      "subShipments": [
+        {
+          "packages": [
+            {
+              "packageSku": "string",
+              "packageTitle": "string",
+              "packageId": "string",
+              "dimensions": {
+                "breadth": 0,
+                "length": 0,
+                "weight": 0,
+                "height": 0
+              }
+            }
+          ],
+          "subShipmentId": "string"
+        }
+      ],
+      "dispatchByDate": "2020-07-28T20:27:51.669Z",
+      "shipmentId": "string",
+      "packagingPolicy": "string",
+      "shipmentType": "string",
+      "locationId": "string",
+      "dispatchAfterDate": "2020-07-28T20:27:51.669Z",
+      "updatedAt": "2020-07-28T20:27:51.669Z",
+      "hold": true,
+      "orderItems": [
+        {
+          "orderId": "string",
+          "status": "APPROVED",
+          "packageIds": [
+            "string"
+          ],
+          "orderItemId": "string",
+          "courierReturn": true,
+          "title": "string",
+          "serviceProfile": "Flipkart_Fulfilment",
+          "hsn": "string",
+          "cancellationGroupId": "string",
+          "orderDate": "2020-07-28T20:27:51.669Z",
+          "paymentType": "COD",
+          "is_replacement": true,
+          "cancellationSubReason": "string",
+          "fsn": "string",
+          "sku": "string",
+          "priceComponents": {
+            "shippingCharge": 0,
+            "customerPrice": 0,
+            "totalPrice": 0,
+            "flipkartDiscount": 0,
+            "sellingPrice": 0
+          },
+          "cancellationReason": "string",
+          "cancellationDate": "2020-07-28T20:27:51.669Z",
+          "listingId": "string",
+          "quantity": 0
+        }
+      ],
+      "mps": true
+    }
+  ],
+  "nextPageUrl": "string",
+  "hasMore": true
+}
+
+
+
+-----------*------------*--------------------
+Positive test cases:
+
+S.Nos: TC_01
+    Description: Verify the API behaviour in case we pass integer for any string input param/object in 
+                 json.
+        Actual result: API returns 200 response code with valid JSON response
+            Expected result: API should return 200 response code with valid JSON response
+                Status: PASS
+    -----------*------------*--------------------
+Negative test cases:
+
+S.Nos: TC_01
+    Description: Verify the API behaviour in case we don't pass any of the mandatory param/object in resp
+                 json.
+        Actual result: API returns 5xx response code with valid error message configured for tha error 
+                       code.
+            Expected result: API should return 5xx response code with valid error message
+                    Status: PASS
+-----------*------------*--------------------
+Edge test cases:
+
+S.Nos: TC_01
+    Description: Verify the API behaviour in case we pass any out of bound value as per the datatype of
+                 any of the param 
+        Actual result: API returns 5xx/4xxx response code with valid error message configured for the 
+                       error code
+            Expected result: API should return 5xx/4xx response code with valid error message
+                Status: PASS                        
